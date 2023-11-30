@@ -1,0 +1,27 @@
+.Container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px;
+    margin-left: 8px;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.ProfilePic{
+    height: 50px;
+    width: fit-content;
+    border-radius: 50%;
+}
+
+
+.username{
+    font-size: 13px;
+    color: rgb(215, 214, 214);
+}
+
+.restaurentname{
+    font-size: 11px;
+    color: rgb(176, 175, 175);
+}

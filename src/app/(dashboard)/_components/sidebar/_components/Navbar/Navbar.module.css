@@ -1,0 +1,21 @@
+.navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 24px 0;
+
+}
+
+.navName{   
+    font-size: 14px;
+    color: rgb(103, 103, 101);
+    font-weight: 400;
+    padding: 4px 8px;
+    border-radius: 6px;
+
+}
+
+.activeSection{
+    background-color: rgba(62, 62, 62, 0.471);
+}
