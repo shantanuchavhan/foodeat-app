@@ -5,10 +5,31 @@ import { useSession } from 'next-auth/react'
 import logo from "../../../../../public/images/logo-food.png"
 import Image from 'next/image'
 import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext'
-const Header = () => {
-    const {data}=useSession()
+
+import { useRouter } from 'next/navigation'
+import { getUserDetails } from '@/actions/Action'
+import { useEffect,useState } from 'react'
+const Header = ({ params }) => {
+  const [userid,setUserid]=useState()
+  const {data,status}=useSession()
+    useEffect(()=>{
+      const fetchedData=async()=>{
+        const user=await getUserDetails("email",data?.user?.email)
+        console.log(user,"user")
+        setUserid(user?.id)
+      }
+      fetchedData()
+    },[data])
+    // console.log(params.userid,"fromheaderparams")
+   
+    const router=useRouter()
+    
+    if(userid){
+      router.push(`/${userid}`)
+    }
+    
     const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
-    console.log(data?.user)
+    console.log(userid)
   return (
     <>
     {!data?.user ?
@@ -20,9 +41,9 @@ const Header = () => {
         </Link>
         <nav className='flex gap-12'>
             <div className=''></div>
-            <Link href={'/dashboard'}>Add Restauret</Link> 
-            <Link href={'/signin'}>login</Link>
-            <Link href='/checkout'>Cart</Link>
+            <Link href={`/dashboard`}>Add Restauret</Link> 
+            <Link href={"/signin"}>login</Link>
+            <Link href={"/checkout"}>Cart</Link>
         </nav>
     </div>):
     (<div className='flex h-12 items-center justify-between p-10'>
@@ -34,8 +55,8 @@ const Header = () => {
         <nav className='flex gap-12'>
             <div className=''></div>
             {restaurantDetails?<Link href={'/dashboard'}>Your Restauret</Link>:<Link href={'/dashboard'}>Add Restauret</Link> }
-            <Link href='/checkout'>Cart</Link>
-            <Link href={'/orders'}>Orders</Link>
+            <Link href={`/${userid}/checkout`}>Cart</Link>
+            <Link href={`/${userid}/orders`}>Orders</Link>
         </nav>
     </div>)
     }

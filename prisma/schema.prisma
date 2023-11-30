@@ -123,3 +123,50 @@ model CartItem {
 }
 
 
+
+
+model Order {
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  orderNumber String      @unique
+  userId      String
+  totalAmount Float
+  orderedItems OrderItem[]
+  
+  createdAt   DateTime    @default(now())
+
+  user        User        @relation(fields: [userId], references: [id])
+}
+
+model OrderItem {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  orderId       String
+  menuId        String
+  quantity      Int
+  price         Float
+  total         Float
+  createdAt     DateTime   @default(now())
+  order         Order      @relation(fields: [orderId], references: [id])
+  menu          Menu       @relation(fields: [menuId], references: [id])
+}
+
+
+model DeliveryCompletion {
+  id               String    @id @default(auto()) @map("_id") @db.ObjectId
+  orderId          String
+  deliveryPersonId String
+  completionTime   DateTime
+  rating           Float
+  feedback         String?
+  
+  order            Order     @relation(fields: [orderId], references: [id])
+  deliveryPerson   User      @relation(fields: [deliveryPersonId], references: [id])
+}
+
+
+model DeliveryPerson {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  vehicleNumber String
+  isAvailable   Boolean   @default(true)
+  orders        Order[]   @relation("DeliveryPersonOrders", references: [id])}
+
