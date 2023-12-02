@@ -1,21 +1,17 @@
 "use server"
 
 import prisma from "@/utils/connect";
+// import { revalidatePath } from "next/cache";
+
 import {getUserDetails} from "./Action"
 
 import { getUserCart } from "./cartAction";
 
 
 function generateOrderNumber() {
-    // Generate a timestamp in the format YYYYMMDDHHmmss
     const timestamp = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14);
-  
-    // Generate a random 4-digit number
     const randomDigits = Math.floor(1000 + Math.random() * 9000);
-  
-    // Combine the timestamp and random digits to create the order number
     const orderNumber = `ORD-${timestamp}-${randomDigits}`;
-  
     return orderNumber;
   }
   
@@ -23,7 +19,7 @@ function generateOrderNumber() {
 
 
 export async function addOrder(formData){
-    console.log(formData.get("id"))
+    console.log(formData)
     const user=await getUserDetails("id",formData.get("id"))
     const cart=await getUserCart("id",formData.get("id"))
     let totalAmount= 0
@@ -66,6 +62,7 @@ export async function addOrder(formData){
                 
             }
         })
+        console.log(orderItem,"orderItem")
         
     }
     if( data){
@@ -98,8 +95,20 @@ export async function getAllOrders(id){
             deliveryCompletions:true
         },
     })
-    console.log(orders[2].orderedItems)
+    // console.log(orders[2].orderedItems)
     return orders
 }
 
 
+
+export async function cancelOrder(formData){
+   console.log(formData.get("userId"),"formData,path")
+    const order =await prisma.Order.delete({
+        where:{
+            id:formData.get("id") 
+        }
+    })
+   
+    console.log(order)
+   
+}

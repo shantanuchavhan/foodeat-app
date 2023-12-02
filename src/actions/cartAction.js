@@ -101,7 +101,9 @@ export async function addCartItem(cartItemDetails) {
         console.log('CartItem upserted:', upsertedCartItem);
       }
 
-      revalidatePath("/checkout")
+      if(user.id){
+        revalidatePath(`/${user.id}/checkout`)
+      }
     }
   } catch (error) {
     console.error('Error adding/updating cart item:', error.message);
@@ -127,6 +129,10 @@ export async function getUserCart(type,value){
     }
 
 }
+
+
+
+
 
 
 

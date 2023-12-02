@@ -1,5 +1,5 @@
 "use server"
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export async function addMenuAction(id, imageUrls,formData) {
   console.log(formData,id, imageUrls,"hii")
@@ -26,7 +26,7 @@ export async function addMenuAction(id, imageUrls,formData) {
           },
         },
       });
-      revalidatePath(`/dashboard/${id}/add-menu`)
+      // revalidatePath(`/dashboard/${id}/add-menu`)
       // Example: Log the new menu item
       console.log(newMenuItem);
     }
@@ -82,7 +82,7 @@ export async function updateMenu(formData) {
         },
       });
       
-      revalidatePath(`/dashboard/saiprasad%20restaurent/menu`)
+      // revalidatePath(`/dashboard/saiprasad%20restaurent/menu`)
       return {props: {
         deletedMenu,
       },

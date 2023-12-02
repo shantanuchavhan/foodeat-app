@@ -30,7 +30,6 @@ const Addresses = ({addres,index ,setConfirmAddress,confirmAddress,setIsAddressR
                 setConfirmAddress((old) => addres)
                 setIsAddressRequiredSection((old) => true)
                 // console.log(confirmAddress,"confirmAddress")
-                
             }}
             >
             Delivere Here

@@ -9,24 +9,26 @@ import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext'
 import { useRouter } from 'next/navigation'
 import { getUserDetails } from '@/actions/Action'
 import { useEffect,useState } from 'react'
+import { usePathname } from 'next/navigation'
+
 const Header = ({ params }) => {
   const [userid,setUserid]=useState()
   const {data,status}=useSession()
+  const pathname = usePathname()  
     useEffect(()=>{
       const fetchedData=async()=>{
         const user=await getUserDetails("email",data?.user?.email)
         console.log(user,"user")
-        setUserid(user?.id)
+        setUserid(()=>user?.id)
       }
       fetchedData()
+     
     },[data])
     // console.log(params.userid,"fromheaderparams")
    
     const router=useRouter()
     
-    if(userid){
-      router.push(`/${userid}`)
-    }
+    
     
     const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
     console.log(userid)

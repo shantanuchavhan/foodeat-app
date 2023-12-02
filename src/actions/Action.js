@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "@/utils/connect";
-import { revalidatePath } from "next/cache";
+import { revalidatePath } from 'next/cache'
 import { redirect } from "next/navigation";
 import { Revalidate } from "next/dist/server/lib/revalidate";
 
@@ -197,7 +197,7 @@ export async function addUserAddress(value, formData) {
       address: Array.isArray(user.address) ? [...user.address, formData.get("address")] : [formData.get("address")],
     },
   });
-  revalidatePath("/checkout")
+  revalidatePath('/[userid]/checkout')
 
   console.log(updatedUser);
 }

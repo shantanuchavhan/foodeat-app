@@ -111,15 +111,22 @@ model Categories {
   menus         Menu[]
 }
 
+
+
+
 model CartItem {
   id       String     @id @default(auto()) @map("_id") @db.ObjectId
   userId   String
   menuId   String
   quantity Int
   createdAt DateTime?  @default(now())  
+  
   user     User       @relation(fields: [userId], references: [id])
   menu     Menu       @relation(fields: [menuId], references: [id])
+
+  @@unique(name:"CartItemId",[userId, menuId])
 }
+
 
 
 model Order {
@@ -143,7 +150,7 @@ model OrderItem {
   price     Float
   total     Float
   createdAt DateTime @default(now())
-  order     Order    @relation(fields: [orderId], references: [id])
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
   menu      Menu     @relation(fields: [menuId], references: [id])
 }
 
@@ -153,8 +160,8 @@ model DeliveryPerson {
   isAvailable          Boolean              @default(true)
   orders               Order[]              
   deliveryCompletions  DeliveryCompletion[] 
-  name                 String
-  phone                Int
+  name                 String?
+  phone                Int?
 }
 
 

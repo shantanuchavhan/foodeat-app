@@ -1,9 +1,11 @@
-import { getAllOrders } from "@/actions/orderActions"; // Assuming the correct function name is getAllOrder
+import { getAllOrders } from "@/actions/orderActions";
+import { cancelOrder } from "@/actions/orderActions";
 
 const Page = async ({ params }) => {
   console.log("hii");
-  const data = await getAllOrders(params.userId); // Corrected function name
-  console.log(data)
+  console.log(params.userId,'params.userId')
+  const data = await getAllOrders(params.userId); 
+  
 
   return (
     <div className="bg-amber-100 min-h-screen flex flex-col text-black  p-20">
@@ -24,9 +26,13 @@ const Page = async ({ params }) => {
                     <p className="">Quantity:- {item.quantity}</p>
                     {item.deliveryCompletions==null&&<div><h1>Arriving soon</h1></div> }
                   </div>
-                  <button >
-                    <h3 className="bg-red-500 p-2 rounded-md">Cancel</h3>
-                  </button>
+                  <form action={cancelOrder}>
+                    <input type="hidden" name="id"  value={order.id}/>
+                    <input type="hidden" name="userId"  value={params.id}/>
+                    <button type="submit"  >
+                      <h3 className="bg-red-500 p-2 rounded-md">Cancel</h3>
+                    </button>
+                  </form>
                 </div>
               ))}
             </div>
