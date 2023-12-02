@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
-
-const PaymentComponent = ({userid}) => {
+const PaymentComponent = () => {
    
     return (
     <div className='bg-amber-50  py-10 h-40 flex align-center justify-center '>

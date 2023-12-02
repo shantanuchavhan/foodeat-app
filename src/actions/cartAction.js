@@ -109,6 +109,27 @@ export async function addCartItem(cartItemDetails) {
 }
 
 
+export async function getUserCart(type,value){
+    const User= await getUserDetails(type,value)
+    if(User){
+      const userWithCart = await prisma.user.findUnique({
+        where: { id: User.id },
+        include: {
+          cart: {
+            include: {
+              menu: true,
+            },
+          },
+        },
+      });
+      console.log(userWithCart,"userWithCart")
+      return userWithCart.cart
+    }
+
+}
+
+
+
 
 
 

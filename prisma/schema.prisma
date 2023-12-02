@@ -68,6 +68,8 @@ model User {
   // Define the foreign key for the Restaurant relationship
   restaurantId  String?
 
+   orders        Order[]   
+
   // Define the relationship with Restaurant model
   restaurant    Restaurant?  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 }
@@ -84,6 +86,7 @@ model Restaurant {
 }
 
 model Menu {
+  
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   itemName      String
   price         Float
@@ -96,6 +99,7 @@ model Menu {
   restaurantId  String
   categoryId    String
   carts         CartItem[]
+  OrderItem     OrderItem[]
   category      Categories  @relation(fields: [categoryId], references: [id])
   restaurant    Restaurant  @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
 }
@@ -107,66 +111,58 @@ model Categories {
   menus         Menu[]
 }
 
-
-
-
-
 model CartItem {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  menuId  String
-  userId  String
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String
+  menuId   String
   quantity Int
-  itemsTotal Int
-  menu    Menu   @relation(fields: [menuId], references: [id])
-  user    User   @relation(fields: [userId], references: [id])
-  @@unique(name: "CartItemId",[menuId, userId])
+  createdAt DateTime?  @default(now())  
+  user     User       @relation(fields: [userId], references: [id])
+  menu     Menu       @relation(fields: [menuId], references: [id])
 }
-
-
 
 
 model Order {
-  id          String      @id @default(auto()) @map("_id") @db.ObjectId
-  orderNumber String      @unique
-  userId      String
-  totalAmount Float
-  orderedItems OrderItem[]
-  
-  createdAt   DateTime    @default(now())
-
-  user        User        @relation(fields: [userId], references: [id])
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  orderNumber          String               @unique
+  userId               String
+  totalAmount          Float
+  orderedItems         OrderItem[]
+  createdAt            DateTime             @default(now())
+  user                 User                 @relation(fields: [userId], references: [id])
+  deliveryCompletions  DeliveryCompletion?  
+  deliveryPersonId     String     
+  deliveryPerson       DeliveryPerson        @relation(fields: [deliveryPersonId], references: [id])
 }
 
 model OrderItem {
-  id            String     @id @default(auto()) @map("_id") @db.ObjectId
-  orderId       String
-  menuId        String
-  quantity      Int
-  price         Float
-  total         Float
-  createdAt     DateTime   @default(now())
-  order         Order      @relation(fields: [orderId], references: [id])
-  menu          Menu       @relation(fields: [menuId], references: [id])
-}
-
-
-model DeliveryCompletion {
-  id               String    @id @default(auto()) @map("_id") @db.ObjectId
-  orderId          String
-  deliveryPersonId String
-  completionTime   DateTime
-  rating           Float
-  feedback         String?
-  
-  order            Order     @relation(fields: [orderId], references: [id])
-  deliveryPerson   User      @relation(fields: [deliveryPersonId], references: [id])
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String
+  menuId    String
+  quantity  Int
+  price     Float
+  total     Float
+  createdAt DateTime @default(now())
+  order     Order    @relation(fields: [orderId], references: [id])
+  menu      Menu     @relation(fields: [menuId], references: [id])
 }
 
 
 model DeliveryPerson {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String
-  vehicleNumber String
-  isAvailable   Boolean   @default(true)
-  orders        Order[]   @relation("DeliveryPersonOrders", references: [id])}
+  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
+  isAvailable          Boolean              @default(true)
+  orders               Order[]              
+  deliveryCompletions  DeliveryCompletion[] 
+  name                 String
+  phone                Int
+}
 
+
+model DeliveryCompletion {
+  id                String         @id @default(auto()) @map("_id") @db.ObjectId
+  orderId           String         @unique
+  feedback          String?
+  order             Order          @relation(fields: [orderId], references: [id])
+  deliveryPersonId  String
+  deliveryPerson    DeliveryPerson   @relation(fields: [deliveryPersonId], references: [id])
+}

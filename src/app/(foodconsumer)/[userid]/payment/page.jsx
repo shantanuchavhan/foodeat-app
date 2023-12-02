@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-const page = () => {
+import {addOrder} from  "@/actions/orderActions"
+const page = ({params}) => {
+
   return (
     <div className='bg-amber-100 text-black  min-h-screen flex flex-col  items-center'>
         <div className='flex items-center p-4 gap-4 w-3/5 bg-amber-100 '>
@@ -37,11 +39,11 @@ const page = () => {
                             <p className='text-gray-700'>You need to have registered upi id</p>
                         </div>
                     </div>
-                    <Link href="/" className='bg-green-400 text-center py-5 text-white flex align-center justify-center px-20'>Book Order</Link>
+                    <form action={addOrder}>
+                        <input type="hidden" value={params.userid} name="id" />
+                        <button type="submit"  className='bg-green-400 text-center py-5 text-white flex align-center justify-center px-20'>Book Order</button>
+                    </form>
             </div>
-
-            
-
     </div>
   )
 }

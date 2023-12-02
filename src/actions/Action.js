@@ -120,6 +120,8 @@ export async function getRestaurent(key,value){
 
 
 
+
+
 export default async function getRestaurentMenuList(id) {
   // get Restaurent from restaurent Menu id
   console.log(id,"getRestaurentMenuList")
@@ -212,7 +214,5 @@ export async function removeUserAddress(value,formData){
     },
   });
   revalidatePath('/')
- 
   console.log(updatedUser.address)
- 
 }
