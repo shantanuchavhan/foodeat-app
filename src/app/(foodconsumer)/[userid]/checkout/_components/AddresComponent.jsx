@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AddNewAdressComponent from './AddNewAdressComponent';
 import Addresses from './Addresses';
 
-const AddresComponent = ({ address, setAddress,setIsAddressRequiredSection}) => {
+const AddresComponent = ({address,  setAddress,setIsAddressRequiredSection}) => {
   const [confirmAddress, setConfirmAddress] = useState("");
 
   return (
