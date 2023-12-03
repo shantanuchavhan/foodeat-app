@@ -1,9 +1,67 @@
 
-import { addUserAddress } from '@/actions/Action'
+
 import { useSession } from 'next-auth/react'
+import { useUserDetailsContext } from '@/context/userDetailsContext'
+import { useState } from 'react'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddNewAdressComponent = () => {
     const {data}=useSession()
+    const { userDetails, setUserDetails }=useUserDetailsContext()
+    const [newAddress,setNewAddress]=useState("")
+    const handleAddressChange = (event) =>{setNewAddress(event.target.value);};
+    
+    async function addNewAddress() {
+        if (newAddress.trim() === "") {
+          const notify = () => toast.error("Please enter an address!");
+          notify();
+          return; // Return to prevent further execution
+        }
+      
+        try {
+          const response = await fetch(`/api/users/${data?.user?.id}/addAddress`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ address: newAddress }),
+          });
+      
+          if (response.ok) {
+            // Successful response
+            setUserDetails((oldUserDetails) => ({
+              ...oldUserDetails,
+              address: [...oldUserDetails.address, newAddress],
+            }));
+      
+            // Clear the input after adding the address
+            setNewAddress('');
+      
+            // Notify success
+            const notifySuccess = () => toast.success("Address added successfully!");
+            notifySuccess();
+          } else {
+            // Handle errors if the request was not successful
+            const errorMessage = await response.text();
+            console.error('Failed to add address:', errorMessage);
+      
+            // Notify the user about the error
+            const notifyError = () => toast.error(`Failed to add address: ${errorMessage}`);
+            notifyError();
+          }
+        } catch (error) {
+          console.error('Error adding address:', error);
+      
+          // Notify the user about the error
+          const notifyError = () => toast.error(`Error adding address: ${error.message}`);
+          notifyError();
+        }
+      }
+
+      
+      
   return (
     <div className='border  border-solid border-gray p-4 h-12/13 w-3/6 flex flex-col gap-3 align-center justify-center'>
         <div className='flex gap-2'>
@@ -22,10 +80,11 @@ const AddNewAdressComponent = () => {
                 <h1>Add New Address</h1>
             </div>
         </div>
-        <form  action={addUserAddress.bind(null,data?.user?.email)}>
-            <textarea className='border border-gray-100 w-full p-2' name="address" type="text" />
-            <button className='border  border-solid border-gray  flex align-center justify-center p-3 text-green-500' type='submit'>Add Address</button>
-        </form>
+        <ToastContainer />
+        <div >
+            <textarea className='border border-gray-100 w-full p-2' name="address" onChange={handleAddressChange}  type="text" />
+            <button onClick={()=>addNewAddress()} className='border  border-solid border-gray  flex align-center justify-center p-3 text-green-500' >Add Address</button>
+        </div>
     
     </div>
   )

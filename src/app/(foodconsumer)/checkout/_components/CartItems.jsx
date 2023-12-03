@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import AddToCart from "../../_complonents/AddToCart/AddToCart";
 import { menu } from "@nextui-org/react";
-
+import { useUserDetailsContext } from "@/context/userDetailsContext";
 const CartItems = ({ cartItem, setItemsTotal,itemsTotal }) => {
   
   const [isLoading, setIsLoading] = useState(!cartItem? true : false);
   console.log("cartItem", cartItem)
   
-
+  const {userDetails}=useUserDetailsContext() 
   useEffect(() => {
     if (cartItem?.menu?.price) {
       console.log(cartItem.menu.price,"uce")

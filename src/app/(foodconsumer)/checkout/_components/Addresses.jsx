@@ -1,12 +1,21 @@
 import React from 'react'
 import { useSession } from 'next-auth/react'
 
-
+import { useUserDetailsContext } from '@/context/userDetailsContext'
 import { removeUserAddress } from '@/actions/Action'
 
 const Addresses = ({addres,index ,setConfirmAddress,confirmAddress,setIsAddressRequiredSection}) => {
   const {data}=useSession()
-  console.log(confirmAddress,"confirmAddress")
+  const { userDetails, setUserDetails }=useUserDetailsContext()
+  async function removeAddress(address){
+    console.log("remove address")
+    setUserDetails((oldUserDetails) => ({
+        ...oldUserDetails,
+        address: oldUserDetails?.address.filter((addr) => addr !== address),
+      }));
+    await removeUserAddress.bind(null,data?.user?.email)
+    
+  }
   return (
         <>
         {
@@ -35,10 +44,10 @@ const Addresses = ({addres,index ,setConfirmAddress,confirmAddress,setIsAddressR
             >
             Delivere Here
         </button>
-        <form className='absolute -top-3 -right-2' action={removeUserAddress.bind(null,data?.user?.email)} >
+        <form className='absolute -top-3 -right-2' action={removeAddress} >
             <input type="hidden" name='address' value={addres} />
             <input type="hidden" name='id' value={index} />
-            <button type='submit'>
+            <button type='submit' >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-red-200">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>

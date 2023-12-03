@@ -1,10 +1,13 @@
+"use client"
 import React, { useState } from 'react';
 import AddNewAdressComponent from './AddNewAdressComponent';
 import Addresses from './Addresses';
+import { useUserDetailsContext } from '@/context/userDetailsContext';
 
 const AddresComponent = ({ address, setAddress,setIsAddressRequiredSection}) => {
   const [confirmAddress, setConfirmAddress] = useState("");
-
+  const { userDetails, setUserDetails }=useUserDetailsContext()
+  // console.log(userDetails,"userDetails from AddresComponent")
   return (
     <>
       {confirmAddress==="" ? (
@@ -17,10 +20,10 @@ const AddresComponent = ({ address, setAddress,setIsAddressRequiredSection}) => 
             <p className='text-slate-400 '>You have a saved address in this location</p>
           </div>
           <div className='h-3/4 flex gap-5'>
-            {address ? (
+            {userDetails?.address ? (
               // If address exists, map over the array and render Addresses component for each
               <>
-                {address.map((addres, index) => (
+                {userDetails?.address.map((addres, index) => (
                   <Addresses
                     key={index}
                     index={index}

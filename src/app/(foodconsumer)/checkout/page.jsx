@@ -9,8 +9,9 @@ import Image from 'next/image';
 
 
 import CartPaymentDetails from './_components/CartPaymentDetails';
-
 import { getUserCart } from '@/actions/Action';
+
+import { UserDetailsProvider } from '@/context/userDetailsContext';
 
 
 import AuthRequiredSection from './_components/AuthRequiredSection';
@@ -42,12 +43,9 @@ const Page = () => {
     fetchUserCart();
   }, [data?.user?.email]);
 
-
- 
-  
-
   console.log(cartPaymentDetailsSection,"cartPaymentDetailsSection ")
   return (
+    <UserDetailsProvider>
     <div className='flex text-black gap-10 py-10  px-10 bg-amber-100 h-screen'>
       <div className='w-full '>
         {status === 'loading' ? (
@@ -62,9 +60,6 @@ const Page = () => {
           </div>
         )}
       </div>
-
-    
-      
           {
             
             cartPaymentDetailsSection ? 
@@ -80,8 +75,8 @@ const Page = () => {
                 </div>
               )
             }
-       
     </div>
+    </UserDetailsProvider>
   );
 };
 
