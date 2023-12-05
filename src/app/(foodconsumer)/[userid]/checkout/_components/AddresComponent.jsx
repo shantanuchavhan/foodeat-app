@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import AddNewAdressComponent from './AddNewAdressComponent';
 import Addresses from './Addresses';
-
-const AddresComponent = ({address,  setAddress,setIsAddressRequiredSection}) => {
+import { useUserDetailsContext } from '@/context/userDetailsContext';
+const AddresComponent = ({setIsAddressRequiredSection}) => {
   const [confirmAddress, setConfirmAddress] = useState("");
-
+  const {userDetails}=useUserDetailsContext()
   return (
     <>
       {confirmAddress==="" ? (
@@ -12,15 +12,15 @@ const AddresComponent = ({address,  setAddress,setIsAddressRequiredSection}) => 
         <div className='bg-amber-50 p-10 min-h- flex flex-col gap-6 '>
           <div>
             <h3 className='font-bold text-gray-700'>
-              {address ? "Select delivery address" : "Add New Address"}
+              {userDetails?.address ? "Select delivery address" : "Add New Address"}
             </h3>
             <p className='text-slate-400 '>You have a saved address in this location</p>
           </div>
           <div className='h-3/4 flex gap-5'>
-            {address ? (
+            {userDetails?.address ? (
               // If address exists, map over the array and render Addresses component for each
               <>
-                {address.map((addres, index) => (
+                {userDetails?.address.map((addres, index) => (
                   <Addresses
                     key={index}
                     index={index}

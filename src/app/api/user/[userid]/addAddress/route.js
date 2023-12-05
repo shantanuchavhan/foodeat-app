@@ -1,8 +1,10 @@
 import prisma from "@/utils/connect";
 import { NextResponse } from "next/server";
 export async function POST(req, { params }) {
+  console.log("hii from addAddress route")
     const { userid } = params;
-    console.log("hii from addAddress route")
+    const {body}= req.JSON()
+    
     const updatedUser = await prisma.user.update({
         where: {
           id: userid,

@@ -2,12 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { addCartItem } from '@/actions/cartAction';
-const AddToCart = ({menuId,quantity}) => {
+import { useUserDetailsContext } from '@/context/userDetailsContext';
+
+const AddToCart = ({menuId,quantity,setUserDetails,userDetails}) => {
   const {data}=useSession()
   const [toggle, setToggle] = useState(quantity?true:false);
   const [count,setCount]=useState(quantity||1)
   const [userId,setUserId]=useState()
-  console.log(userId,"console.log(userId)")
+
+  console.log(userDetails,"console.log(userId)")
   const handleClick = () => {
     setToggle((prevToggle) => !prevToggle);
     AddtoCart(1)
@@ -16,11 +19,15 @@ const AddToCart = ({menuId,quantity}) => {
 
   async function AddtoCart(quantity){
     console.log("hii")
-    const CartItem=await addCartItem({
+    const updatedUserCart=await addCartItem({
         menuId:menuId,
         user:data.user,
         quantity:quantity
     })
+
+    if(userDetails){
+      setUserDetails((old)=>updatedUserCart)
+    }
   }
 
   function countit(value){
@@ -33,7 +40,7 @@ const AddToCart = ({menuId,quantity}) => {
         setCount((old)=>{
           
             if(old>1){
-              console.log(old-1,"old")
+              
                 return old-1
             }else{
                 if(old<=1){
@@ -44,7 +51,7 @@ const AddToCart = ({menuId,quantity}) => {
                 return 
             }
         })
-        AddtoCart(count)
+        AddtoCart(count-1)
       }
     
   }

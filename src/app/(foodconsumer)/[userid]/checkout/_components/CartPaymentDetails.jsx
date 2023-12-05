@@ -4,16 +4,19 @@ import { useSearchParams } from 'next/navigation';
 import CartItems from './CartItems';
 import BillDetails from './BillDetails';
 
-const CartPaymentDetails = ({ cartItems }) => {
+import { useUserDetailsContext } from '@/context/userDetailsContext';
+
+const CartPaymentDetails = () => {
   const [itemsTotal, setItemsTotal] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
+  const {userDetails}= useUserDetailsContext()
 
   return (
     <>
       <div className='w-3/5 bg-amber-50  flex-col justify-center align-center gap-12 p-5 '>
         <div className=' h-4/5 overflow-y-auto'>
           <div className='flex-col align-center justify-center pr-4 '>
-            {cartItems?.map((cartItem) => (
+            {userDetails?.cart?.map((cartItem) => (
               <CartItems key={cartItem.id} cartItem={cartItem} setItemsTotal={setItemsTotal} itemsTotal={itemsTotal} />
             ))}
           </div>

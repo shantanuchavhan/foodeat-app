@@ -1,11 +1,34 @@
 
 import { addUserAddress } from '@/actions/Action'
 import { useSession } from 'next-auth/react'
-
+import { useUserDetailsContext } from '@/context/userDetailsContext'
+import { useState } from 'react'
+import { ToastContainer,toast } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 const AddNewAdressComponent = () => {
+    const {userDetails, setUserDetails }=useUserDetailsContext()
+    const [newAddress,setNewAddress]=useState()
     const {data}=useSession()
+    const handlechange=(e)=>{
+        setNewAddress((old)=>e.target.value)
+        
+    }
+   
+    const AddAddress=()=>{
+        setUserDetails((old) => {
+            return {
+                ...old,
+                address: [
+                    ...old.address, newAddress
+                ]
+            }
+        });
+        toast.success("successfully added", { autoClose: 1000 })
+
+    }
   return (
     <div className='border  border-solid border-gray p-4 h-12/13 w-3/6 flex flex-col gap-3 align-center justify-center'>
+        <ToastContainer/>
         <div className='flex gap-2'>
             <div className='relative w-6'>
                 <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-500">
@@ -19,12 +42,14 @@ const AddNewAdressComponent = () => {
                 </div>
             </div>
             <div>
-                <h1>Add New Address</h1>
+                <h1>Add New Addressss
+
+                </h1>
             </div>
         </div>
         <form  action={addUserAddress.bind(null,data?.user?.email)}>
-            <textarea className='border border-gray-100 w-full p-2' name="address" type="text" />
-            <button className='border  border-solid border-gray  flex align-center justify-center p-3 text-green-500' type='submit'>Add Address</button>
+            <textarea className='border border-gray-100 w-full p-2' name="address" type="text" onChange={handlechange} />
+            <button className='border  border-solid border-gray  flex align-center justify-center p-3 text-green-500' type='submit' onClick={AddAddress} >Add Addresss</button>
         </form>
     
     </div>

@@ -8,15 +8,21 @@ const userDetailsContext = createContext();
 export  function UserDetailsProvider({ children }) {
   const { status, data } = useSession();
   const [userDetails, setUserDetails] = useState(null); 
-  useEffect(()=>{
-    const fetchedData=async()=>{
-      const Data= await getUserDetails("email",data?.user?.email)
-      console.log(Data,"user Data from userDetails Provider")
-      setUserDetails(Data)
-      
-    }
-    fetchedData()
-  },[data?.user?.email])
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (status === "authenticated") {
+          const userData = await getUserDetails("email", data?.user?.email);
+          console.log(userData, "user Data from userDetails Provider");
+          setUserDetails(userData);
+        }
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+  
+    fetchData();
+  }, [data?.user?.email, status]);
 
   
   console.log(userDetails,"user Data from userDetails Provider")

@@ -16,7 +16,7 @@ import { getUserCart } from '@/actions/Action';
 import AuthRequiredSection from './_components/AuthRequiredSection';
 import DeliveryAndPaymentSection from './_components/DeliveryAndPaymentSection';
 
-
+import { UserDetailsProvider } from '@/context/userDetailsContext';
 
 const Page = ({params}) => {
   
@@ -49,6 +49,7 @@ const Page = ({params}) => {
 
   console.log(cartPaymentDetailsSection,"cartPaymentDetailsSection ")
   return (
+    
     <div className='flex text-black gap-10 py-10  px-10 bg-amber-100 h-screen'>
       <div className='w-full '>
         {status === 'loading' ? (
@@ -83,6 +84,7 @@ const Page = ({params}) => {
             }
        
     </div>
+   
   );
 };
 

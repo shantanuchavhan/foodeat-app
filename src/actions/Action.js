@@ -8,6 +8,9 @@ import { Revalidate } from "next/dist/server/lib/revalidate";
 
 
 
+
+
+
 export async function getUserDetails(key, value) {
   console.log(key,value,"key-value")
   if(value){
@@ -184,35 +187,37 @@ export async function getMenuCategoryAction(id){
 }
 
 
-// export async function addUserAddress(value, formData) {
-//   console.log(value,formData)
-//   const user = await getUserDetails("email", value);
-//   console.log(user, "User");
+export async function addUserAddress(value, formData) {
+  console.log(value,formData)
+  const user = await getUserDetails("email", value);
+  console.log(user, "User");
 
-//   const updatedUser = await prisma.user.update({
-//     where: {
-//       id: user.id,
-//     },
-//     data: {
-//       address: Array.isArray(user.address) ? [...user.address, formData.get("address")] : [formData.get("address")],
-//     },
-//   });
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      address: Array.isArray(user.address) ? [...user.address, formData.get("address")] : [formData.get("address")],
+    },
+  });
  
 
-//   console.log(updatedUser);
-// }
+  console.log(updatedUser);
+}
 
-// export async function removeUserAddress(value,formData){
-//   const user = await getUserDetails("email", value);
-//   const id=formData.get("id")
-//   const addresses=formData.get("address")
-//   const updatedAddresses = user.address.filter((address) => address !== addresses);
-//   const updatedUser = await prisma.user.update({
-//     where: { id: user.id },
-//     data: {
-//       address:updatedAddresses,
-//     },
-//   });
+export async function removeUserAddress(value,formData){
  
-//   console.log(updatedUser.address)
-// }
+  const user = await getUserDetails("email", value);
+  const id=formData.get("id")
+  const addresses=formData.get("address")
+  console.log(addresses,"addresses")
+  const updatedAddresses = user.address.filter((address) => address !== addresses);
+  const updatedUser = await prisma.user.update({
+    where: { id: user.id },
+    data: {
+      address:updatedAddresses,
+    },
+  });
+  revalidatePath(`http://localhost:3000/${user.id}/checkout`)
+  console.log(updatedUser.address)
+}
