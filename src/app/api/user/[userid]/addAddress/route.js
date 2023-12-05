@@ -10,7 +10,7 @@ export async function POST(req, { params }) {
           id: userid,
         },
         data: {
-          address: Array.isArray(user.address) ? [...user.address, formData.get("address")] : [formData.get("address")],
+          address: Array.isArray(user.address) ? [...user.address, body.address] : [formData.get("address")],
         },
       });
 

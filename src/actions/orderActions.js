@@ -101,14 +101,14 @@ export async function getAllOrders(id){
 
 
 
-export async function cancelOrder(formData){
-   console.log(formData.get("userId"),"formData,path")
+export async function cancelOrder(orderid,userid){
+   console.log(orderid,"formData,path")
     const order =await prisma.Order.delete({
         where:{
-            id:formData.get("id") 
+            id:orderid
         }
     })
    
-    console.log(order)
+    return order
    
 }

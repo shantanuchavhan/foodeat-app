@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddNewAdressComponent from './AddNewAdressComponent';
 import Addresses from './Addresses';
 import { useUserDetailsContext } from '@/context/userDetailsContext';
+import "react-toastify/dist/ReactToastify.css";
 const AddresComponent = ({setIsAddressRequiredSection}) => {
   const [confirmAddress, setConfirmAddress] = useState("");
   const {userDetails}=useUserDetailsContext()
