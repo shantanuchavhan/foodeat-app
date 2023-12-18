@@ -1,6 +1,6 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
-import styles from "./loginPage.module.css";
+import styles from "./LoginPage.module.css";
 import useParentPath from "@/hooks/useParentPath";
 import { useRouter} from "next/navigation";
 const Login = () => {

@@ -22,7 +22,7 @@ const Categories = () => {
     const fetchData = async () => {
       try {
         const data = await getMenuCategoryAction(id);
-        console.log(data.menus);
+        console.log(data.menus,"getMenuCategory");
         // Update state correctly
         setItems(data.menus);
         return data;
@@ -41,7 +41,7 @@ const Categories = () => {
       {items.map((category) => (
         <div key={category.id} className='bg-black w-80 flex-col gap-3 rounded-md overflow-hidden' >
           <RestaurentNavigator id={category.restaurantId} />
-        <MenuCard category={category}/>
+         <MenuCard category={category}/>
         </div>
       ))}
     </div>
