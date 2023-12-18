@@ -1,9 +1,9 @@
 
 
-const orderdetails= () => {
+const page= () => {
   return (
     <div>orderdetails</div>
   )
 }
 
-export default orderdetails
+export default page

@@ -1,9 +1,9 @@
 
 
-const singleitem = () => {
+const page = () => {
     return (
       <div>page</div>
     )
   }
   
-  export default singleitem 
+  export default page
