@@ -27,7 +27,7 @@ const CategorySection = () => {
 
     const fetchData = async () => {
       try {
-        const data = await getCategoriesAction();
+        const data = await fetch('/api/categories');;
         console.log(data, "data");
         setCategories(data);
       } catch (error) {
