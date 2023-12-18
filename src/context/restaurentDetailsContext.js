@@ -3,7 +3,7 @@
 import { createContext,useContext, useState } from "react";
 const RestaurantDetailsContext = createContext();
 
-export function RestaurantDetails({children}) {
+export function  RestaurantDetails({children}) {
   
     const [restaurantDetails, setRestaurantDetails] = useState({});
     console.log(restaurantDetails)

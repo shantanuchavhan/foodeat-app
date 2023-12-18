@@ -9,16 +9,19 @@ import { UserDetailsProvider } from "@/context/userDetailsContext"
 
 const layout = ({children}) => {
   return (
+    
     <RestaurantDetails>
     <AuthProvider>
+    <UserDetailsProvider>
       
         <div className={style.backgroundImage}> </div>
          <Header/> 
         <div>{children}</div>
         <Footer/>
-     
+     </UserDetailsProvider>
     </AuthProvider>
     </RestaurantDetails>
+    
   )
 }
 

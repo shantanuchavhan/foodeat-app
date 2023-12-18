@@ -7,12 +7,12 @@ import Image from 'next/image';
 import RestaurentNavigator from './_components/RestaurentNavigator';
 import MenuCard from '../_complonents/MenuCard/MenuCard';
 
-import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
+import { useUserDetailsContext } from '@/context/userDetailsContext';
 
 const Categories = () => {
   // Use 'useState' instead of 'useState'
   const [items, setItems] = useState([]);
-  const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
+  const {userDetails, setUserDetails }=useUserDetailsContext()
 
   const searchParams = useSearchParams(); 
   const id = searchParams.get('category_id');
@@ -41,7 +41,7 @@ const Categories = () => {
       {items.map((category) => (
         <div key={category.id} className='bg-black w-80 flex-col gap-3 rounded-md overflow-hidden' >
           <RestaurentNavigator id={category.restaurantId} />
-         <MenuCard category={category}/>
+         <MenuCard category={category} setUserDetails={setUserDetails} userDetails={userDetails}/>
         </div>
       ))}
     </div>

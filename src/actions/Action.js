@@ -26,7 +26,7 @@ export async function getUserDetails(key, value) {
         },
       },
     });
-    
+    console.log(user,"user")
     return user;
   }
   

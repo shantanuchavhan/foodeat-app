@@ -1,14 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import AddToCart from '../AddToCart/AddToCart';
-const MenuCard = ({ category }) => {
+
+
+const MenuCard = ({ category,userDetails, setUserDetails }) => {
   const searchParams = useSearchParams();
+  
+  const [quantity,setQuantity]= useState()
+
+  useEffect(()=>{
+    console.log(userDetails?.cart, "foundItem")
+    const foundItem = userDetails?.cart?.find(cartItem => category.menuId === category.id);
+    setQuantity(()=>foundItem?.quantity)
+   
+  },[])
+
   const veg = searchParams.get('veg');
   if (veg === 'true' && !category.isVegetarian) {
     // Skip rendering non-vegetarian items when 'veg' is true
     return null;
   }
+
+  
+
 
   return (
     <div className='flex-col rounded-md p-2 min-h-70 w-full bg-black'>
@@ -29,7 +44,7 @@ const MenuCard = ({ category }) => {
         <div className='py-2 px-1'>
           <div className='flex justify-between align-center'>
             <h1 className=''>{category.itemName.charAt(0).toUpperCase() + category.itemName.slice(1)}</h1>
-            <AddToCart menuId={category.id}/>
+            <AddToCart menuId={category.id} quantity={quantity} setUserDetails={setUserDetails} userDetails={userDetails} />
             <div className='flex justify-center items-center bg-lime-500 rounded p-1 px-2 text-white'>
               <h3>4.4</h3>
               <svg

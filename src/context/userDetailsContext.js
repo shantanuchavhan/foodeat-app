@@ -10,11 +10,16 @@ export  function UserDetailsProvider({ children }) {
   const [userDetails, setUserDetails] = useState(null); 
   useEffect(() => {
     const fetchData = async () => {
+      
       try {
         if (status === "authenticated") {
+          console.log(data?.user?.email,"status")
           const userData = await getUserDetails("email", data?.user?.email);
-          console.log(userData, "user Data from userDetails Provider");
-          setUserDetails(userData);
+          
+          if(userData){
+            console.log(userData, "user Data from userDetails Provider");
+            setUserDetails(userData);
+          }
         }
       } catch (error) {
         console.error("Error fetching user details:", error);
@@ -22,10 +27,10 @@ export  function UserDetailsProvider({ children }) {
     };
   
     fetchData();
-  }, [data?.user?.email, status]);
+  }, [data?.user?.email]);
 
   
-  console.log(userDetails,"user Data from userDetails Provider")
+  
   return (
     <userDetailsContext.Provider value={{ userDetails, setUserDetails }}>
       {children}
