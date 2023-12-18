@@ -112,3 +112,22 @@ export async function cancelOrder(orderid,userid){
     return order
    
 }
+
+
+export async function getAllRestaurentOrders(userId) {
+    try {
+        const orders = await prisma.order.findMany({
+            where: {
+                userId: userId,
+            },
+        });
+
+        return orders;
+    } catch (error) {
+        // Handle errors appropriately (e.g., log, throw, or return a specific error response)
+        console.error('Error fetching restaurant orders:', error);
+        throw error;
+    } finally {
+        await prisma.$disconnect(); // Close the Prisma client connection
+    }
+}

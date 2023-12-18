@@ -6,9 +6,13 @@ import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import RestaurentNavigator from './_components/RestaurentNavigator';
 import MenuCard from '../_complonents/MenuCard/MenuCard';
+
+import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
+
 const Categories = () => {
   // Use 'useState' instead of 'useState'
   const [items, setItems] = useState([]);
+  const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
 
   const searchParams = useSearchParams(); 
   const id = searchParams.get('category_id');
