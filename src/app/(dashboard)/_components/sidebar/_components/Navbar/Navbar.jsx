@@ -5,8 +5,8 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from './Navbar.module.css';
 import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
-const Navbar = () => {
-  const [activeSection,setActiveSection]=useState("Home")
+const Navbar = ({activeSection,setActiveSection}) => {
+  
   const {restaurantDetails} = useRestaurentDetailsContext()
   function switchsection(section) {
     setActiveSection(()=>section)
