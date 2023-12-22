@@ -1,10 +1,10 @@
-
+// Example: signinPage.js
 import Signin from "@/components/signin/Login";
-const signinPage = () => {
-  
+
+const SigninPage = () => {
   return (
-    <Signin  />
+    <Signin />
   );
 };
 
-export default signinPage;
+export default SigninPage;
