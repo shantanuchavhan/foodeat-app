@@ -1,9 +1,8 @@
-// Example: signinPage.js
-import Signin from "@/components/signin/Login";
-
+import Login from "@/components/signin/Login";
 const SigninPage = () => {
+  
   return (
-    <Signin />
+    <Login  />
   );
 };
 
