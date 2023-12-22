@@ -1,4 +1,4 @@
-"use server"
+"use server";
 import prisma from "@/utils/connect";
 import { getUserDetails } from "./Action";
 import { revalidatePath } from "next/cache";
@@ -44,65 +44,58 @@ import { revalidatePath } from "next/cache";
 //         });
 //         console.log('CartItem created:', CartItem);
 //       }
-      
+
 //     }
 //   } catch (error) {
-    
+
 //     console.error('Error adding cart item:', error.message);
-//   } 
+//   }
 // }
-
-
 
 export async function addCartItem(cartItemDetails) {
   console.log(cartItemDetails, "cartItemDetails");
 
   try {
     const menuId = cartItemDetails.menuId;
-    const user = await getUserDetails('email', cartItemDetails.user.email);
+    const user = await getUserDetails("email", cartItemDetails.user.email);
     console.log(menuId, user?.id, cartItemDetails.quantity, "ids");
 
-    
-   
     if (user) {
-      if(cartItemDetails.quantity<=0){
+      if (cartItemDetails.quantity <= 0) {
         const existingCartItem = await prisma.cartItem.findUnique({
           where: {
-            CartItemId : {
+            CartItemId: {
               menuId: menuId,
               userId: user.id,
             },
           },
         });
-        console.log(existingCartItem,"exis")
-        
+        console.log(existingCartItem, "exis");
+
         if (existingCartItem && existingCartItem.quantity <= 1) {
           const deletedCartItem = await prisma.cartItem.delete({
             where: {
-              CartItemId : {
+              CartItemId: {
                 menuId: menuId,
                 userId: user.id,
               },
             },
           });
-        
-          console.log('Cart item deleted successfully:', deletedCartItem);
-        } else {
-          console.log('Cart item not found or quantity is greater than 0.');
-        }
-        
-        
 
-      }else{
+          console.log("Cart item deleted successfully:", deletedCartItem);
+        } else {
+          console.log("Cart item not found or quantity is greater than 0.");
+        }
+      } else {
         const upsertedCartItem = await prisma.cartItem.upsert({
           where: {
-            CartItemId : {
+            CartItemId: {
               menuId: menuId,
               userId: user.id,
             },
           },
           update: {
-            quantity:cartItemDetails.quantity,
+            quantity: cartItemDetails.quantity,
           },
           create: {
             menu: {
@@ -114,45 +107,34 @@ export async function addCartItem(cartItemDetails) {
             quantity: cartItemDetails.quantity,
           },
         });
-        console.log('CartItem upserted:', upsertedCartItem);
+        console.log("CartItem upserted:", upsertedCartItem);
       }
-      const updatedUser = await getUserDetails('email', cartItemDetails.user.email);4
-      return updatedUser
-      
-        
+      const updatedUser = await getUserDetails(
+        "email",
+        cartItemDetails.user.email,
+      );
+      4;
+      return updatedUser;
     }
   } catch (error) {
-    console.error('Error adding/updating cart item:', error.message);
+    console.error("Error adding/updating cart item:", error.message);
   }
 }
 
-
-export async function getUserCart(type,value){
-    const User= await getUserDetails(type,value)
-    if(User){
-      const userWithCart = await prisma.user.findUnique({
-        where: { id: User.id },
-        include: {
-          cart: {
-            include: {
-              menu: true,
-            },
+export async function getUserCart(type, value) {
+  const User = await getUserDetails(type, value);
+  if (User) {
+    const userWithCart = await prisma.user.findUnique({
+      where: { id: User.id },
+      include: {
+        cart: {
+          include: {
+            menu: true,
           },
         },
-      });
-      console.log(userWithCart,"userWithCart")
-      return userWithCart.cart
-    }
-
+      },
+    });
+    console.log(userWithCart, "userWithCart");
+    return userWithCart.cart;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-  

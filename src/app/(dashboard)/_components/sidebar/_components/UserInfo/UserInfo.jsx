@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import style from './app.module.css';
-import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
+import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
+import style from "./app.module.css";
+import { useRestaurentDetailsContext } from "@/context/restaurentDetailsContext";
 
 const getData = async (slug) => {
   const res = await fetch(`http://localhost:3000/api/restaurent/${slug}`, {
-    cache: 'no-store',
+    cache: "no-store",
   });
 
   if (!res.ok) {
-    throw new Error('Failed');
+    throw new Error("Failed");
   }
 
   return res.json();
@@ -27,7 +27,7 @@ const UserInfo = () => {
           const restaurant = await getData(data.user.email);
           setRestaurantDetails(restaurant);
           setRestaurentName(restaurant.restaurantName);
-          console.log(restaurant.restaurantName);  // Log the value directly from the fetched data
+          console.log(restaurant.restaurantName); // Log the value directly from the fetched data
         }
       } catch (error) {
         console.error(error);

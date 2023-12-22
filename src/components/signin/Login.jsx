@@ -2,11 +2,12 @@
 import { signIn, useSession } from "next-auth/react";
 import styles from "./LoginPage.module.css";
 import useParentPath from "@/hooks/useParentPath";
-import { useRouter} from "next/navigation";
-import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
+import { useRouter } from "next/navigation";
+import { useRestaurentDetailsContext } from "@/context/restaurentDetailsContext";
 const Login = () => {
-  const { status,data } = useSession();
-  const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
+  const { status, data } = useSession();
+  const { restaurantDetails, setRestaurantDetails } =
+    useRestaurentDetailsContext();
   const parentPath = useParentPath();
   const router = useRouter();
 
@@ -16,17 +17,21 @@ const Login = () => {
 
   if (status === "authenticated") {
     // router.push(parentPath||"/"+data.user.name)
-    router.back()
+    router.back();
   }
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.socialButton} onClick={(e) => 
-        { e.preventDefault()
-          signIn("google")}}>
+        <div
+          className={styles.socialButton}
+          onClick={(e) => {
+            e.preventDefault();
+            signIn("google");
+          }}
+        >
           Sign in with Google
-        </div>  
+        </div>
       </div>
     </div>
   );

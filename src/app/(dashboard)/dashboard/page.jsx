@@ -1,7 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { useRouter
- } from "next/navigation"; // Correct import for next/router
+import { useRouter } from "next/navigation"; // Correct import for next/router
 import CreateRestaurent from "./_components/CreateRestaurent";
 import { getRestaurent } from "@/actions/Action";
 import { useEffect, useState } from "react";
@@ -10,13 +9,13 @@ export default function Dashboard() {
   const { status, data } = useSession();
   const router = useRouter();
   const [restaurantName, setRestaurantName] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (status === "authenticated") {
-          const Restaurent= await getRestaurent("email", data?.user?.email);
-          console.log(Restaurent,"Restaurent")
+          const Restaurent = await getRestaurent("email", data?.user?.email);
+          console.log(Restaurent, "Restaurent");
           const fetchedRestaurantName = Restaurent?.restaurantName || null;
           setRestaurantName(fetchedRestaurantName);
         }
@@ -41,5 +40,3 @@ export default function Dashboard() {
     return null;
   }
 }
-
-

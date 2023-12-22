@@ -1,18 +1,17 @@
-.container{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 32px;
-    align-items: center;
-   
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 32px;
+  align-items: center;
 }
 
-.buttons{
-    display: flex;
-    gap:16px;
+.buttons {
+  display: flex;
+  gap: 16px;
 }
-.button{
-    padding: 8px;
-    border: 1px solid gray;
-    border-radius: 12px;
+.button {
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 12px;
 }

@@ -2,16 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background-color: rgb(36,37,41);
+body {
+  background-color: rgb(36, 37, 41);
   color: rgb(255, 246, 235);
   overflow-x: hidden;
   border-bottom: 1px dotted gray;
   /* background-image: url('../../public/images/headerimg.jpg');
   z-index: -100; */
-  
 }
 
-input textarea{
+input textarea {
   color: rgb(0, 0, 0);
 }

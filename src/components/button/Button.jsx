@@ -1,6 +1,6 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import styles from './styles.module.css';
+import React from "react";
+import Button from "@mui/material/Button";
+import styles from "./styles.module.css";
 function AddDishButton() {
   return (
     <Button variant="contained" className={styles.customButton}>
