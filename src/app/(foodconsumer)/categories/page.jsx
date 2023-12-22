@@ -41,6 +41,7 @@ const Categories = () => {
       {items.map((category) => (
         <div key={category.id} className='bg-black w-80 flex-col gap-3 rounded-md overflow-hidden' >
           <RestaurentNavigator id={category.restaurantId} />
+          
          <MenuCard category={category} setUserDetails={setUserDetails} userDetails={userDetails}/>
         </div>
       ))}

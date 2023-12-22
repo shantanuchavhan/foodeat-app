@@ -27,8 +27,8 @@ const CategorySection = () => {
 
     const fetchData = async () => {
       try {
-        const data = await fetch('/api/categories');;
-        console.log(data, "data");
+        const response = await fetch('/api/categories');
+        const data = await response.json();
         setCategories(data);
       } catch (error) {
         console.error("Error fetching categories:", error);

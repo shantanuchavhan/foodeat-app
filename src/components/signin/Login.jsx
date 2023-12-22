@@ -3,9 +3,10 @@ import { signIn, useSession } from "next-auth/react";
 import styles from "./LoginPage.module.css";
 import useParentPath from "@/hooks/useParentPath";
 import { useRouter} from "next/navigation";
+import { useRestaurentDetailsContext } from '@/context/restaurentDetailsContext';
 const Login = () => {
   const { status,data } = useSession();
-
+  const {restaurantDetails, setRestaurantDetails}=useRestaurentDetailsContext()
   const parentPath = useParentPath();
   const router = useRouter();
 

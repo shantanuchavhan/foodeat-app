@@ -10,6 +10,7 @@ const CartPaymentDetails = () => {
   const [itemsTotal, setItemsTotal] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
   const {userDetails}= useUserDetailsContext()
+  
 
   return (
     <>
