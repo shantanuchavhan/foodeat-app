@@ -29,6 +29,5 @@ https://fooodeat.netlfy.app/
 ![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324479/Screenshot_2023-12-22_173017_fzxyl7.png)
 ![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324442/Screenshot_2023-12-22_212432_nnig1v.png)
 ![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324483/Screenshot_2023-12-22_212546_roxlzo.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+
 
