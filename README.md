@@ -42,8 +42,18 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 > > > > > > > c587049c88ae8e8ecf3f6b323c9aef92cbb8014f
 
-https://fooodeat.netlify.app/
+https://fooodeat.netlfy.app/
 
 
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324481/Screenshot_2023-12-22_164430_vys198.png)https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324481/Screenshot_2023-12-22_164430_vys198.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324481/Screenshot_2023-12-22_164430_vys198.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324484/Screenshot_2023-12-22_210301_lzxwko.png)
 
