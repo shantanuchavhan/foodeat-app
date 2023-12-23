@@ -10,16 +10,16 @@ import { useCallback } from "react";
 const CategorySection = () => {
   const [categories, setCategories] = useState(null); // Initialize with null
 
-  const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name, value) => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
+  // const searchParams = useSearchParams();
+  // const createQueryString = useCallback(
+  //   (name, value) => {
+  //     const params = new URLSearchParams(searchParams);
+  //     params.set(name, value);
 
-      return params.toString();
-    },
-    [searchParams],
-  );
+  //     return params.toString();
+  //   },
+  //   [searchParams],
+  // );
 
   useEffect(() => {
     console.log("fetch started");
@@ -50,7 +50,7 @@ const CategorySection = () => {
           categories.map((category) => (
             <Link
               href={
-                "/categories?" + createQueryString("category_id", category.id)
+                `/categories/${category.id}`
               }
               className="flex-col align-center gap-4 text-center"
               key={category.id}

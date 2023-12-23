@@ -1,21 +1,18 @@
 // Import the correct hook from React
 "use client";
 import React, { useState, useEffect } from "react";
-import { getMenuCategoryAction } from "@/actions/Action";
-import { useSearchParams } from "next/navigation";
-import Image from "next/image";
+
+
 import RestaurentNavigator from "./_components/RestaurentNavigator";
-import MenuCard from "../_complonents/MenuCard/MenuCard";
+import MenuCard from "../../_complonents/MenuCard/MenuCard";
 
 import { useUserDetailsContext } from "@/context/userDetailsContext";
 
-const Categories = () => {
+const Categories = ({params}) => {
   // Use 'useState' instead of 'useState'
   const [items, setItems] = useState([]);
   const { userDetails, setUserDetails } = useUserDetailsContext();
-
-  const searchParams = useSearchParams();
-  const id = searchParams.get("category_id");
+  const {id} = params
 
   useEffect(() => {
     // Correct the function definition
