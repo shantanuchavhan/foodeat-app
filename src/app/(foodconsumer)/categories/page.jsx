@@ -20,6 +20,7 @@ const Categories = () => {
   useEffect(() => {
     // Correct the function definition
     const fetchData = async () => {
+      console.log("fetching started")
       try {
         const Menu = 
         console.log(Menu.categoryId, "Menu");
