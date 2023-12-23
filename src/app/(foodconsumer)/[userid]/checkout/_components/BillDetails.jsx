@@ -5,7 +5,7 @@ const BillDetails = ({ totalAmount, setTotalAmount, itemsTotal }) => {
   const [deliveryFee, setDeliveryFee] = useState(50);
   const [deliveryTip, setDeliveryTip] = useState(0);
   const [platformFee, setPlatformFee] = useState(3);
-  const [gstRestaurentCharges, setGstRestaurentCharges] = useState(120);
+  const [gstRestaurentCharges, setGstRestaurentCharges] = useState(20);
   useEffect(() => {
     setTotalAmount((old) => {
       return (
@@ -27,7 +27,7 @@ const BillDetails = ({ totalAmount, setTotalAmount, itemsTotal }) => {
         </div>
         <div className="flex justify-between">
           <h4 className="text-sm font-extralight">Delivery Fee|3.0</h4>
-          <h4 className="text-sm">{itemsTotal ? "50" : "0"}</h4>
+          <h4 className="text-sm">{itemsTotal ? deliveryFee: "0"}</h4>
         </div>
       </div>
       <div>
@@ -37,13 +37,13 @@ const BillDetails = ({ totalAmount, setTotalAmount, itemsTotal }) => {
         </div>
         <div className="flex justify-between">
           <h4 className="text-sm font-extralight">Platform fee</h4>
-          <h4 className="text-sm">{itemsTotal ? "3" : "0"}</h4>
+          <h4 className="text-sm">{itemsTotal ? platformFee : "0"}</h4>
         </div>
         <div className="flex justify-between">
           <h4 className="text-sm font-extralight">
             GST and Restaurant Charges
           </h4>
-          <h4 className="text-sm">{itemsTotal ? "121" : "0"}</h4>
+          <h4 className="text-sm">{itemsTotal ? gstRestaurentCharges : "0"}</h4>
         </div>
       </div>
     </div>

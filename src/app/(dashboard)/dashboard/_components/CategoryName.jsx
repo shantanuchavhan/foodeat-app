@@ -28,7 +28,7 @@ const CategoryName = () => {
   };
   console.log(categories, "categories");
   return (
-    <div className="text-black bg-red-100  py-1  flex  items-center  justify-center h-12 px-3">
+    <div className="text-black bg-white py-1  flex  items-center  justify-center h-12 px-3">
       <input type="hidden" name="categoryName" value={selectedOption} />
       <label htmlFor="categorySelect">Select Category : </label>
       <select

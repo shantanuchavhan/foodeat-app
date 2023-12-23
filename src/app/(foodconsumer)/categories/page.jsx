@@ -35,7 +35,7 @@ const Categories = () => {
   }, [id]); // Remove 'setCategories' from the dependencies array
 
   return (
-    <div className="grid   grid-rows-3 grid-cols-3 p-12 gap-8 px-20 align-center justify-center bg-white text-white">
+    <div className="grid   grid-rows-3 grid-cols-3 p-12 gap-8 px-20 min-h-screen align-center justify-center bg-white text-white">
       {items.map((category) => (
         <div
           key={category.id}

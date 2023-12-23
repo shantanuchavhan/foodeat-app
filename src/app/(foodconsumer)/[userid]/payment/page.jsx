@@ -25,7 +25,7 @@ const page = ({ params }) => {
         <div>
           <div className="bg-amber-100">
             <h1>Payment Options</h1>
-            <p className="text-gray-500">1 Item.Total : Rs434</p>
+            <p className="text-gray-500">1 Item.Total : Rs193</p>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ const MenuCard = ({ category, userDetails, setUserDetails }) => {
   }
 
   return (
-    <div className="flex-col rounded-md p-2 min-h-70 w-full bg-black">
+    <div className="flex-col rounded-md p-2  w-full bg-black">
       <div key={category.id}>
         <div className="h-40 overflow-hidden">
           <Image
