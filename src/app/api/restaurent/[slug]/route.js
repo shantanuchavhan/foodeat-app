@@ -4,7 +4,13 @@ import { NextResponse } from "next/server";
 // GET SINGLE POST
 export const GET = async (req, { params }) => {
   const { slug } = params;
-  console.log(slug, "defwe");
+
+if (!slug) {
+  return new NextResponse(
+    JSON.stringify({ message: "Invalid or missing slug parameter" }),
+    { status: 400 } // 400 Bad Request status code
+  );
+}
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -30,7 +36,17 @@ export const GET = async (req, { params }) => {
 
 
 export const POST = async (req, { params }) => {
+  const { restaurantName,address } = await req.json()
   const { slug } = params;
+  console.log(slug,"slug")
+
+
+if (!slug) {
+  return new NextResponse(
+    JSON.stringify({ message: "Invalid or missing slug parameter" }),
+    { status: 400 } // 400 Bad Request status code
+  );
+}
 
   try {
     const user = await prisma.user.findUnique({
@@ -41,8 +57,8 @@ export const POST = async (req, { params }) => {
 
     if (user) {
       const userId = user.id;
-      const { restaurantName,address } = req.body; // Extract restaurantName from the request body
-      console.log(restaurantName,address)
+      const data = req.data; // Extract restaurantName from the request body
+      console.log(data)
 
       // Create a new restaurant and associate it with the user
       const newRestaurant = await prisma.Restaurant.create({
@@ -57,6 +73,7 @@ export const POST = async (req, { params }) => {
 
       // Access the ID of the newly created restaurant
       const createdRestaurantName = newRestaurant.restaurantName;
+      redirect(`/dashboard/${restaurantName}`);
 
       // Send a response indicating success
       return new NextResponse(

@@ -83,7 +83,6 @@ const Page = () => {
   return (
     <form
       className={style.form}
-      action={addMenuAction.bind(null, id, menuData.images)}
     >
       <div className={style.left}>
         <input
