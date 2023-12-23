@@ -21,9 +21,16 @@ const Categories = () => {
     // Correct the function definition
     const fetchData = async () => {
       try {
-        const data = await getMenuCategoryAction(id);
-        console.log(data.menus, "getMenuCategory");
-        // Update state correctly
+        const Menu = 
+        console.log(Menu.categoryId, "Menu");
+        setMenuList(Menu);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+      }
+      try {
+        const response = await fetch(`/api/categories/${id}`);
+        const data=await response.json();
+        console.log(data.menus,"data.menus")
         setItems(data.menus);
         return data;
       } catch (error) {
@@ -32,11 +39,11 @@ const Categories = () => {
     };
 
     fetchData();
-  }, [id]); // Remove 'setCategories' from the dependencies array
+  }, [id]); 
 
   return (
     <div className="grid   grid-rows-3 grid-cols-3 p-12 gap-8 px-20 min-h-screen align-center justify-center bg-white text-white">
-      {items.map((category) => (
+      {items?.map((category) => (
         <div
           key={category.id}
           className="bg-black w-80 flex-col gap-3 rounded-md overflow-hidden"
