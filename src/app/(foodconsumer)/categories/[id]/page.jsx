@@ -18,13 +18,7 @@ const Categories = ({params}) => {
     // Correct the function definition
     const fetchData = async () => {
       console.log("fetching started")
-      try {
-        const Menu = 
-        console.log(Menu.categoryId, "Menu");
-        setMenuList(Menu);
-      } catch (error) {
-        console.error("Error fetching menu:", error);
-      }
+      
       try {
         const response = await fetch(`/api/categories/${id}`);
         const data=await response.json();
