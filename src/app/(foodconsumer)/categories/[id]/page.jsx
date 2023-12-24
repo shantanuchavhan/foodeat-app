@@ -20,7 +20,7 @@ const Categories = ({params}) => {
       console.log("fetching started")
       
       try {
-        const response = await fetch(`/api/categories/${id}`);
+        const response = await fetch(`https://fooodeat.netlify.app/api/categories/${id}`);
         const data=await response.json();
         console.log(data.menus,"data.menus")
         setItems(data.menus);
