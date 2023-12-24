@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 
 export const GET =async(req,{params})=>{
+    
     const {id}=params
+    console.log(id,"id ")
     try {
         const categoryWithMenus = await prisma.Categories.findUnique({
             where: { id: id },
