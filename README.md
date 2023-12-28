@@ -1,17 +1,13 @@
 website link :- https://fooodeat.netlify.app/
 
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766059/wqjq9mm4rc8nntfdzjjt.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766140/mj9iy84yjsfz4jbuhhuy.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766066/zxhsnecxhfbuqt5nupxl.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766140/gkwosxzwtx0xu0zvxpcc.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766140/qnqfemvqyxs0q6tetghk.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766058/tuvehatfesrpzjueca2h.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766138/po2pyysk5wwgxrloutno.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766135/j4603oxkwsmzltvngrim.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766136/rokswdwvvwxquvwy3aio.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766137/z36u3npqcv1kj1pa7itw.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766136/ao5vwrdpngklekluxwkq.png)
-![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703766140/vhmnftvlw8xqjxisskjv.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324442/Screenshot_2023-12-22_211513_zk70sr.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324445/Screenshot_2023-12-22_211539_ksrepu.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324442/Screenshot_2023-12-22_212022_cyduki.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324483/Screenshot_2023-12-22_211711_m55q8v.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703325834/Screenshot_2023-12-23_153329_fzpwlg.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324479/Screenshot_2023-12-22_173017_fzxyl7.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324442/Screenshot_2023-12-22_212432_nnig1v.png)
+![Alt Text](https://res.cloudinary.com/ddw1upvx3/image/upload/v1703324483/Screenshot_2023-12-22_212546_roxlzo.png)
 
 
 ```bash
